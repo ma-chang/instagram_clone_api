@@ -16,6 +16,6 @@ genericsから継承した汎用Viewはurlpatternsで振り分け
 """
 urlpatterns = [
     path("register/", views.CreateUserView.as_view(), name="register"),
-    path("myprofile/", views.MyProfileViewSet.as_view(), name="myprofile"),
+    path("myprofile/", views.MyProfileListView.as_view(), name="myprofile"),
     path("", include(router.urls)),
 ]

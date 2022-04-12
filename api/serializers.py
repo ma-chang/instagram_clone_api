@@ -14,7 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-
         user = get_user_model().objects.create_user(**validated_data)
         return user
 
@@ -29,7 +28,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         extra_kwargs = {"userProfile": {"read_only": True}}
 
 
-class PostSerializer(serializers.Serializer):
+class PostSerializer(serializers.ModelSerializer):
     created_on = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
 
     class Meta:
@@ -38,7 +37,7 @@ class PostSerializer(serializers.Serializer):
         extra_kwargs = {"userPost": {"read_only": True}}
 
 
-class CommentSerializer(serializers.CommentSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ("id", "text", "userComment", "post")

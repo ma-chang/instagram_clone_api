@@ -8,7 +8,7 @@ from .models import Profile, Post, Comment
 # Create your views here.
 class CreateUserView(generics.CreateAPIView):
     serializer_class = serializers.UserSerializer
-    permissions_class = (AllowAny,)
+    permission_classes = (AllowAny,)
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -19,7 +19,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
         serializer.save(userProfile=self.request.user)
 
 
-class MyProfileViewSet(generics.ListAPIView):
+class MyProfileListView(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = serializers.ProfileSerializer
 
